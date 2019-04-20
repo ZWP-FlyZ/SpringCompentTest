@@ -3,6 +3,7 @@ package dataaccess;
 
 
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.context.ApplicationContext;
@@ -19,11 +20,11 @@ public class DataAccessMain {
 		List<User> user = ds.getUserByUserName("zwp");
 		user.forEach(u->System.err.println(u));
 		
-//		User nu = new User();
-//		nu.setUserName("zwp");
-//		nu.setUserPassWord("zzzzzzz");
-//		nu.setRegTime(LocalDateTime.now().toString());
-//		ds.addUser(nu);
+		User nu = new User();
+		nu.setUserName("zwp"+System.currentTimeMillis());
+		nu.setUserPassWord("zzzzzzz");
+		nu.setRegTime(LocalDateTime.now().toString());
+		ds.addUserTx2(nu);
 		
 	}
 

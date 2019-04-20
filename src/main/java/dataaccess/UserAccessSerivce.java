@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionTemplate;
 
 @Service
@@ -32,6 +33,21 @@ public class UserAccessSerivce {
 		return template.query(sql, new UserRowMapper(),userName);
 	}
 	
+	
+	public int addUserTx(User user) {
+		txTemplate.execute(status->{
+			addUser(user);
+			throw new IllegalArgumentException("事务测试");
+
+		});
+		return 0;
+	}
+	
+	@Transactional
+	public int addUserTx2(User user) {
+		addUser(user);
+		throw new IllegalArgumentException("事务测试");
+	}
 	
 	private class UserRowMapper implements RowMapper<User>{
 
