@@ -5,6 +5,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.DataBinder;
+import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 
@@ -27,6 +28,7 @@ public class ValidationMain {
 		
 		BindingResult br = bd.getBindingResult();
 		br.getAllErrors().forEach(v->System.err.println(v.getDefaultMessage()));
+
 		
 	}
 
