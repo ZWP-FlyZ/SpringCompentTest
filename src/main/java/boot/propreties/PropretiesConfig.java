@@ -2,8 +2,9 @@ package boot.propreties;
 
 
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
@@ -15,7 +16,7 @@ import org.springframework.validation.Validator;
 @EnableConfigurationProperties(MypInfo.class)
 public class PropretiesConfig implements CommandLineRunner{
 
-	private final static Logger logger = LoggerFactory.getLogger(PropretiesConfig.class);
+	private final static Log logger = LogFactory.getLog(PropretiesConfig.class);
 	@Value("${myp.msg}")
 	String message;
 	
@@ -43,7 +44,7 @@ public class PropretiesConfig implements CommandLineRunner{
 		
 		// 注意如果MypInfo通不过验证会报异常程序不能正常运行
 		logger.info(info.getMsg());
-		
+		logger.info(info.getAge()+"");
 	}
 	
 }
